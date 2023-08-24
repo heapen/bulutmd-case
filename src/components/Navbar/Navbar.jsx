@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 
-const Navbar = () => {
+const Navbar = ({onSearch }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
+  
+  const handleSearch = (searchTerm) => {
+    onSearch(searchTerm);
+  };
+  
+  const isFilmsOrSeriesRoute = location.pathname.includes("/movies") || location.pathname.includes("/series");
+
   return (
    <>
     <nav className="bg-black py-4">
@@ -37,6 +44,8 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+     { isFilmsOrSeriesRoute &&
+      <SearchBar onSearch={handleSearch} />}
       {isOpen && (
         <div className="md:hidden bg-black text-white py-4">
           <a href="/" className="block py-2">Home</a>
@@ -45,7 +54,7 @@ const Navbar = () => {
         </div>
       )}
     </nav>
-    <SearchBar/>
+  
    </>
   )
 }

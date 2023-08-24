@@ -4,28 +4,23 @@ const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleInputChange = (event) => {
-    const searchTerm = event.target.value;
-    setSearchTerm(searchTerm);
+    const newSearchTerm = event.target.value;
+    setSearchTerm(newSearchTerm);
 
-    if (searchTerm.length >= 3) { // if the search term is 3 or more characters long, then search
-      onSearch(searchTerm);
-    }
-    
-    if (searchTerm.length == 0 ) { // Restart the search if the search term is empty
-      onSearch(searchTerm);
+    if (newSearchTerm.length >= 3 || newSearchTerm.length === 0) {
+      onSearch(newSearchTerm);
     }
   };
 
   return (
-    <div className="flex items-center justify-end rounded-md">
+    <div className="flex items-center justify-center md:justify-end rounded-md">
       <input
-        className="bg-black text-white placeholder-gray-400 outline-none m-2"
+        className="bg-black text-white placeholder-gray-400 outline-none p-2 md:p-3 rounded-md w-full md:w-auto"
         type="text"
         placeholder="Search"
         value={searchTerm}
         onChange={handleInputChange}
       />
-    
     </div>
   );
 };
