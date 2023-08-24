@@ -1,11 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const HomePageCard = () => {
+const HomePageCard = ({ title, imageUrl, link }) => {
   return (
-    <div>
-      <div className="bg-gray-900 min-h-screen flex flex-col items-center justify-center p-4">
-      <div className="grid grid-cols-2 gap-4">
+    <>
+    <div className="bg-gray-900 min-h-screen flex items-center justify-center p-4">
+      <div className="max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
         <Link to="/movies" className="group">
           <div className="relative overflow-hidden bg-black rounded-lg cursor-pointer transition transform group-hover:scale-105">
             <img src="images/Movies.jpg" alt="Movies" className="w-full h-auto group-hover:opacity-75" />
@@ -24,7 +24,7 @@ const HomePageCard = () => {
         </Link>
       </div>
     </div>
-    </div>
+    </>
   )
 }
 
