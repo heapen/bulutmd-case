@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar/Navbar';
 import ShowsCard from '../components/ShowsCard/ShowsCard';
 import { useSelector } from "react-redux";
 import { listData } from '../redux/dataSlice/dataSlice';
+import SearchBar from '../components/SearchBar/SearchBar';
 
 const Movies = () => {
   const allData = useSelector(listData);

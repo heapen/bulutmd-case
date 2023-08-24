@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SearchBar from '../SearchBar/SearchBar';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -44,6 +45,7 @@ const Navbar = () => {
         </div>
       )}
     </nav>
+    <SearchBar/>
    </>
   )
 }
