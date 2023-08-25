@@ -8,7 +8,7 @@ import {
   sortByOldest,
   sortByNewest,
   sortByRandom,
-} from "../components/SortFunc/sortFunctions";
+} from "../SortFunc/sortFunctions";
 
 const Series = () => {
   const allData = useSelector(listData);
