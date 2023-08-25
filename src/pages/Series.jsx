@@ -58,15 +58,15 @@ const Series = () => {
     <>
       <Navbar onSearch={handleSearch}/>
       <div className="flex flex-wrap justify-center items-center h-screen">
-        {sortedSeries.map((item) => (
+      {sortedSeries.filter((item) => item.programType === "series").map((item) => (
           <ShowsCard
-            key={item.id}
+            key={item}
             poster={item.images["Poster Art"].url}
             description={item.description}
             title={item.title}
             releaseDate={item.releaseYear}
-          />
-        ))}
+        />
+       ))}
       </div>
     </>
   );

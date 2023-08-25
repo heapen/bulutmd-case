@@ -31,16 +31,16 @@ const Movies = () => {
     }
   };
 
-  const sortSeries = (seriesData) => {
+  const sortMovies = (moviesData) => {
     switch (sortBy) {
       case "oldest":
-        return sortByOldest(seriesData);
+        return sortByOldest(moviesData);
       case "newest":
-        return sortByNewest(seriesData); 
+        return sortByNewest(moviesData); 
       case "random":
-        return sortByRandom(seriesData);
+        return sortByRandom(moviesData);
       default:
-        return seriesData;
+        return moviesData;
     }
   };
   
@@ -54,20 +54,20 @@ const Movies = () => {
     : allData.filter((movies) => movies.programType === "movie"); // tüm diziler 
 
 
-    const sortedSeries = sortSeries(displayedSeries);
+    const sortedMovies = sortMovies(displayedSeries);
     return (
     <>
       <Navbar onSearch={handleSearch} />
       <div className="flex flex-wrap justify-center items-center h-screen">
-        {sortedSeries.map((item) => (
+      {sortedMovies.filter((item) => item.programType === "movie").map((item) => (
           <ShowsCard
-            key={item.id}
+            key={item}
             poster={item.images["Poster Art"].url}
             description={item.description}
             title={item.title}
             releaseDate={item.releaseYear}
-          />
-        ))}
+        />
+       ))}
       </div>
     </>
   );
