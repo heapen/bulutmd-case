@@ -3,9 +3,16 @@ import Navbar from '../components/Navbar/Navbar';
 import ShowsCard from '../components/ShowsCard/ShowsCard';
 import { useSelector } from "react-redux";
 import { listData } from '../redux/dataSlice/dataSlice';
+import { selectSortBy , sortOptionsEnum} from "../redux/sortSlice/sortSlice";
+import {
+  sortByOldest,
+  sortByNewest,
+  sortByRandom,
+} from "../components/SortFunc/sortFunctions";
 
 const Series = () => {
   const allData = useSelector(listData);
+  const sortBy = useSelector(selectSortBy);
   const series = allData.filter(item => item.programType === "series");
 
   const [filteredSeries, setFilteredSeries] = React.useState([]);
@@ -24,7 +31,21 @@ const Series = () => {
     }
   };
 
-  // Filmleri filtreleyip sadece programType: "movie" olanları alıyoruz
+  // Buradaki fonksiyonlar components/SortFunc/sortFunctions.js içerisinden gelmektedir.  
+  const sortSeries = (seriesData) => {
+    switch (sortBy) {
+      case "oldest":
+        return sortByOldest(seriesData); 
+      case "newest":
+        return sortByNewest(seriesData); 
+      case "random":
+        return sortByRandom(seriesData); 
+      default:
+        return seriesData;
+    }
+  };
+  
+  // Filmleri filtreleyip sadece programType: "series" olanları alıyoruz
 
   const displayedSeries =
   filteredSeries.length > 0
@@ -34,11 +55,12 @@ const Series = () => {
     : series.filter((series) => series.programType === "series"); // show all movies
 
 
-  return (
+    const sortedSeries = sortSeries(displayedSeries);
+    return (
     <>
       <Navbar onSearch={handleSearch}/>
       <div className="flex flex-wrap justify-center items-center h-screen">
-        {displayedSeries.map((item) => (
+        {sortedSeries.map((item) => (
           <ShowsCard
             key={item.id}
             poster={item.images["Poster Art"].url}
