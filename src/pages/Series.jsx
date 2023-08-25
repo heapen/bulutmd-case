@@ -49,8 +49,8 @@ const Series = () => {
   filteredMovies.length > 0
     ? filteredMovies
     : sortBy === sortOptionsEnum.NORMAL 
-    ? allData.filter((allData) => allData.programType === "series").slice(0, 18) // ilk 18 film 
-    : allData.filter((allData) => allData.programType === "series"); // tüm filmler 
+    ? allData.filter((allData) => allData.programType === "series").slice(0, 18) // ilk 18 Dizi
+    : allData.filter((allData) => allData.programType === "series"); // tüm diziler 
 
 
     const sortedSeries = sortSeries(displayedSeries);
