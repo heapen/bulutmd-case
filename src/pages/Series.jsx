@@ -14,19 +14,19 @@ const Series = () => {
   const allData = useSelector(listData);
   const sortBy = useSelector(selectSortBy);
 
-  const [filteredMovies, setFilteredMovies] = React.useState([]);
+  const [filteredSeries, setFilteredSeries] = React.useState([]);
   const handleSearch = (searchTerm) => {
     if (searchTerm.length >= 3) {
-      const filteredMovies = allData.filter((item) => {
+      const filteredSeries = allData.filter((item) => {
         const title = item.title.toLowerCase(); // Daha sağlıklı arama yapabilmesi için küçük harflere çevrildi.
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
 
         return title.includes(lowerCaseSearchTerm);
       });
 
-      setFilteredMovies(filteredMovies);
+      setFilteredSeries(filteredSeries);
     } else {
-      setFilteredMovies([]);
+      setFilteredSeries([]);
     }
   };
 
@@ -46,11 +46,11 @@ const Series = () => {
   // Filmleri filtreleyip sadece programType: "movie" olanları alıyoruz
 
   const displayedSeries =
-  filteredMovies.length > 0
-    ? filteredMovies
+  filteredSeries.length > 0
+    ? filteredSeries
     : sortBy === sortOptionsEnum.NORMAL 
-    ? allData.filter((allData) => allData.programType === "series").slice(0, 18) // ilk 18 Dizi
-    : allData.filter((allData) => allData.programType === "series"); // tüm diziler 
+    ? allData.filter((series) => series.programType === "series").slice(0, 18) // ilk 18 Dizi
+    : allData.filter((series) => series.programType === "series"); // tüm diziler 
 
 
     const sortedSeries = sortSeries(displayedSeries);

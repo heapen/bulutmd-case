@@ -50,8 +50,8 @@ const Movies = () => {
   filteredMovies.length > 0
     ? filteredMovies
     : sortBy === sortOptionsEnum.NORMAL 
-    ? allData.filter((allData) => allData.programType === "movie").slice(0, 18) // ilk 18 film 
-    : allData.filter((allData) => allData.programType === "movie"); // tüm filmler 
+    ? allData.filter((movies) => movies.programType === "movie").slice(0, 18) // ilk 18 Dizi
+    : allData.filter((movies) => movies.programType === "movie"); // tüm diziler 
 
 
     const sortedSeries = sortSeries(displayedSeries);
