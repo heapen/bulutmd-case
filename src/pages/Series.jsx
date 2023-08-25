@@ -13,46 +13,44 @@ import {
 const Series = () => {
   const allData = useSelector(listData);
   const sortBy = useSelector(selectSortBy);
-  const series = allData.filter(item => item.programType === "series");
 
-  const [filteredSeries, setFilteredSeries] = React.useState([]);
+  const [filteredMovies, setFilteredMovies] = React.useState([]);
   const handleSearch = (searchTerm) => {
     if (searchTerm.length >= 3) {
-      const filteredSeries = series.filter((item) => {
-        const title = item.title.toLowerCase(); // title changing to lowercase to make the search case insensitive
+      const filteredMovies = allData.filter((item) => {
+        const title = item.title.toLowerCase(); // Daha sağlıklı arama yapabilmesi için küçük harflere çevrildi.
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
 
         return title.includes(lowerCaseSearchTerm);
       });
 
-      setFilteredSeries(filteredSeries);
+      setFilteredMovies(filteredMovies);
     } else {
-      setFilteredSeries([]);
+      setFilteredMovies([]);
     }
   };
 
-  // Buradaki fonksiyonlar components/SortFunc/sortFunctions.js içerisinden gelmektedir.  
   const sortSeries = (seriesData) => {
     switch (sortBy) {
       case "oldest":
-        return sortByOldest(seriesData); 
+        return sortByOldest(seriesData);
       case "newest":
         return sortByNewest(seriesData); 
       case "random":
-        return sortByRandom(seriesData); 
+        return sortByRandom(seriesData);
       default:
         return seriesData;
     }
   };
   
-  // Filmleri filtreleyip sadece programType: "series" olanları alıyoruz
+  // Filmleri filtreleyip sadece programType: "movie" olanları alıyoruz
 
   const displayedSeries =
-  filteredSeries.length > 0
-    ? filteredSeries
-    : series.length > 18
-    ? series.filter((series) => series.programType === "series").slice(0, 18) // show the first 18 movies
-    : series.filter((series) => series.programType === "series"); // show all movies
+  filteredMovies.length > 0
+    ? filteredMovies
+    : sortBy === sortOptionsEnum.NORMAL 
+    ? allData.filter((allData) => allData.programType === "series").slice(0, 18) // ilk 18 film 
+    : allData.filter((allData) => allData.programType === "series"); // tüm filmler 
 
 
     const sortedSeries = sortSeries(displayedSeries);
