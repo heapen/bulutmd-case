@@ -8,6 +8,6 @@ const dataSlice = createSlice({
   reducers: {},
 });
 
-export const listData = (state) => state.data.dataList.entries; // returns the list of films and series
+export const listData = (state) => state.data.dataList.entries; // film ved dizi listesine tekrar dönmesi için
 
 export default dataSlice.reducer;

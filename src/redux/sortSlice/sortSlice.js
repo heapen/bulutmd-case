@@ -1,47 +1,33 @@
-// actionTypes.js
-export const SET_SORT_BY = 'SET_SORT_BY';
-export const RESET_SORT_BY = 'RESET_SORT_BY';
+import { createSlice } from '@reduxjs/toolkit';
 
-export const sortOptions = {
+ export const  sortOptionsEnum = {
   OLDEST: 'oldest',
   NEWEST: 'newest',
   RANDOM: 'random',
   NORMAL: 'normal',
 };
 
-export const setSortBy = (sortBy) => ({
-  type: SET_SORT_BY,
-  payload: sortBy,
+const initialState = {
+  sortBy: sortOptionsEnum.NORMAL,
+};
+
+const sortSlice = createSlice({
+  name: 'sort',
+  initialState,
+  reducers: {
+    setSortBy: (state, action) => { // action.payload sıralama seçeneğinin değeri 
+      state.sortBy = action.payload;
+    },
+    resetSortBy: (state) => { // Sıralama değerini sıfırlar
+      state.sortBy = sortOptionsEnum.NORMAL;
+    },
+  },
 });
 
-export const resetSortBy = () => ({
-  type: RESET_SORT_BY,
-});
+export const { setSortBy, resetSortBy } = sortSlice.actions;
 
 export const selectSortBy = (state) => state.sort.sortBy;
 
-// sortReducer.js
-import { sortOptions } from './actionTypes';
+export const sortOptions = sortOptionsEnum;
 
-const initialState = {
-  sortBy: sortOptions.NORMAL,
-};
-
-const sortSlice = (state = initialState, action) => {
-  switch (action.type) {
-    case SET_SORT_BY:
-      return {
-        ...state,
-        sortBy: action.payload,
-      };
-    case RESET_SORT_BY:
-      return {
-        ...state,
-        sortBy: sortOptions.NORMAL,
-      };
-    default:
-      return state;
-  }
-};
-
-export default sortSlice;
+export default sortSlice.reducer;
