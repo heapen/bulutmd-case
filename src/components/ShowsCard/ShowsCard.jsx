@@ -1,34 +1,30 @@
 import React, { useState } from 'react';
 
 const ShowsCard = ({ title, description, poster, releaseDate }) => {
-    const [hovered, setHovered] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
-    return (
-    <>
+  return (
     <div
-      className={`w-full sm:w-1/2 md:max-w-xs rounded overflow-hidden shadow-lg p-6 ${
-        hovered ? 'bg-gray-800' : 'bg-gray-900'
-      }`}
+      className={`relative w-full sm:w-1/2 md:max-w-xs rounded overflow-hidden shadow-lg bg-gray-900 mx-4 mb-4 ${hovered ? 'hovered' : ''
+        }`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <img src={poster} className="w-full" alt={`${title} Poster`} />
-      <div className="px-6 py-4">
-        <div className={`font-bold text-white text-xl mb-2 ${hovered ? 'mr-4' : ''}`}>
-          {title}
-        </div>
+      <div
+        className={`absolute bottom-0 left-0 right-0 px-4 py-2 ${hovered ? 'show-description' : 'hidden'
+          }`}
+      >
+        <div className="text-white text-xl font-bold mb-2">{title}</div>
         {hovered && <p className="text-white text-base">{description}</p>}
-      </div>
-      {hovered && (
-        <div className="px-6 py-4">
-          <span className="inline-block bg-red-700 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2">
+        {hovered && (
+          <span className="inline-block bg-red-700 rounded-full px-3 py-1 text-sm font-semibold text-white mt-2">
             {releaseDate}
           </span>
-        </div>
-      )}
+        )}
+      </div>
     </div>
-    </>
-    );
+  );
 };
 
 export default ShowsCard;

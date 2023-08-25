@@ -17,7 +17,7 @@ const Navbar = ({onSearch }) => {
 
   return (
    <>
-    <nav className="bg-black py-4">
+    <nav className="bg-black py-4 relative z-20">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-white font-semibold text-xl">
           <span className="text-red-600">Netflix</span>Clone
