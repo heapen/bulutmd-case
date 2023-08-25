@@ -11,8 +11,8 @@ const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
 
-  const dispatch = useDispatch(); // dispatch actions
-  const sortBy = useSelector(selectSortBy); // get the current sort by from the store
+  const dispatch = useDispatch(); // dispatch işlemlerini yapmak için.  
+  const sortBy = useSelector(selectSortBy); // mevcut olan sıralamayı alması için. 
 
   const options = [
     { id: 1, label: "Sort by new", value: "newest" },
