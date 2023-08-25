@@ -13,7 +13,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="flex items-center justify-center md:justify-end rounded-md">
+    <div className="flex items-center justify-center md:justify-start rounded-md">
       <input
         className="bg-black text-white placeholder-gray-400 outline-none p-2 md:p-3 rounded-md w-full md:w-auto"
         type="text"
