@@ -56,13 +56,6 @@ const Navbar = ({onSearch }) => {
       )}
      { isFilmsOrSeriesRoute &&
       <Dropdown onSearch={handleSearch} />}
-      {isOpen && (
-        <div className="md:hidden bg-black text-white py-4">
-          <a href="/" className="block py-2">Home</a>
-          <a href="/movies" className="block py-2">Movies</a>
-          <a href="/series" className="block py-2">Series</a>
-        </div>
-      )}
     </nav>
   
    </>
